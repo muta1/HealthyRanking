@@ -1,4 +1,4 @@
-package unigames.healthyranking;
+package com.example.anggarisky.pandalogin;
 
 import org.junit.Test;
 
