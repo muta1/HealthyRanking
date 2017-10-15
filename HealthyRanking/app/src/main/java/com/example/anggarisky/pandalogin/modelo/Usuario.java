@@ -10,14 +10,18 @@ public class Usuario extends SugarRecord<Usuario> {
 
     private String nome;
     private String senha;
+    private String perguntaSecreta;
+    private String resposta;
 
     public Usuario(){
 
     }
 
-    public Usuario(String nome, String senha) {
+    public Usuario(String nome, String senha, String perguntaSecreta, String resposta) {
         this.nome = nome;
         this.senha = senha;
+        this.perguntaSecreta = perguntaSecreta;
+        this.resposta = resposta;
     }
 
     public String getNome() {
@@ -36,11 +40,29 @@ public class Usuario extends SugarRecord<Usuario> {
         this.senha = senha;
     }
 
+    public String getPerguntaSecreta() {
+        return perguntaSecreta;
+    }
+
+    public void setPerguntaSecreta(String perguntaSecreta) {
+        this.perguntaSecreta = perguntaSecreta;
+    }
+
+    public String getResposta() {
+        return resposta;
+    }
+
+    public void setResposta(String resposta) {
+        this.resposta = resposta;
+    }
+
     @Override
     public String toString() {
         return "Usuario{" +
                 "nome='" + nome + '\'' +
                 ", senha='" + senha + '\'' +
+                ", perguntaSecreta='" + perguntaSecreta + '\'' +
+                ", resposta='" + resposta + '\'' +
                 '}';
     }
 }
