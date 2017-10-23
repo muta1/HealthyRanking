@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.anggarisky.pandalogin.R;
 import com.example.anggarisky.pandalogin.modelo.Usuario;
@@ -21,7 +22,7 @@ public class CadastrarUsuario extends AppCompatActivity implements View.OnClickL
     EditText et_nome,et_senha,et_perguntaSecreta,et_resposta;
     Intent it;
     Button bt_cadastrar;
-
+    Usuario user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,22 +70,52 @@ public class CadastrarUsuario extends AppCompatActivity implements View.OnClickL
         return semDuplicado;
     }
 
-    public void verificaEts(){
+    public boolean verificaEts(){
 
         if(et_nome.getText().toString().trim().equals("")){
             et_nome.setText("");
             et_nome.setError("Por favor informe o nome.");
+            return false;
         }else if(et_senha.getText().toString().trim().equals("")){
             et_senha.setText("");
             et_senha.setError("Por favor informe a senha.");
+            return false;
         }else if(et_perguntaSecreta.getText().toString().trim().equals("")){
             et_perguntaSecreta.setText("");
             et_perguntaSecreta.setError("Por favor informe a pergunta secreta.");
+            return false;
         }else if(et_resposta.getText().toString().trim().equals("")){
             et_resposta.setText("");
             et_resposta.setError("Por favor informe a resposta.");
+            return false;
         }
+        return true;
 
+    }
+
+    public void insereNovoUsuario(){
+        user = new Usuario();
+
+        user.setNome(et_nome.getText().toString());
+        user.setPerguntaSecreta(et_perguntaSecreta.getText().toString());
+        user.setResposta(et_resposta.getText().toString());
+        user.setSenha(et_senha.getText().toString());
+
+        user.save();
+
+        ToolsDroid.msg("Cadastro realizado com sucesso.",CadastrarUsuario.this, Toast.LENGTH_LONG);
+
+        it = new Intent(CadastrarUsuario.this,MainActivity.class);
+        startActivity(it);
+
+    }
+
+    public boolean usuarioNaoExiste(){
+        List<Usuario> usersTest = new Usuario().find(Usuario.class,"nome = ?", et_nome.getText().toString());
+        if(usersTest.size() > 0){
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -96,10 +127,16 @@ public class CadastrarUsuario extends AppCompatActivity implements View.OnClickL
                 startActivity(it);
                 break;
             case R.id.BT_TC_Cadastrar:
-                verificaEts();
-                if(naoExisteUsuarioComEsteNome()){
-                    //Usuario user = new Usuario()
-                    ToolsDroid.msg("entrou aqui",this);
+                if(verificaEts()){
+                    if(naoExisteUsuarioComEsteNome()){
+
+                        if(usuarioNaoExiste()){
+                            insereNovoUsuario();
+                        }else{
+                            ToolsDroid.msg("Já existe um usuário com este nome.",CadastrarUsuario.this);
+                        }
+
+                    }
                 }
 
                 break;

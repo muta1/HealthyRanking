@@ -66,7 +66,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/ET_TL_Nome"
         android:layout_width="250dp"
         android:layout_height="45dp"
         android:layout_marginBottom="8dp"
@@ -87,7 +87,7 @@
         app:layout_constraintVertical_bias="0.097" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/ET_TL_Senha"
         android:layout_width="250dp"
         android:layout_height="45dp"
         android:layout_marginBottom="8dp"
@@ -104,11 +104,11 @@
         app:layout_constraintHorizontal_bias="0.344"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/ET_TL_Nome"
         app:layout_constraintVertical_bias="0.019" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/BT_TL_Entrar"
         android:layout_width="250dp"
         android:layout_height="51dp"
         android:layout_marginLeft="8dp"
@@ -148,10 +148,10 @@
         android:layout_marginTop="8dp"
         android:text="Esqueci a Senha"
         android:textColor="@android:color/holo_blue_light"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/BT_TL_Entrar"
         app:layout_constraintHorizontal_bias="0.87"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/ET_TL_Senha"
         app:layout_constraintVertical_bias="0.0" />
 </android.support.constraint.ConstraintLayout>

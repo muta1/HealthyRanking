@@ -20,7 +20,7 @@
             android:name="QUERY_LOG"
             android:value="true" />
         <meta-data
-            android:name="DOMAIN_PACKAGE_NAME"
+            android:name="HEALTHY_RANKING"
             android:value="com.example.anggarisky.pandalogin" />
 
         <activity android:name=".principal.SplashScreen">
@@ -46,6 +46,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".telas.CadastrarUsuario">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".telas.AreaUsuario">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
