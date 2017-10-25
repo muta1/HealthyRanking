@@ -15,6 +15,9 @@ import com.example.anggarisky.pandalogin.telas.AreaUsuario;
 import com.example.anggarisky.pandalogin.telas.CadastrarUsuario;
 import com.example.anggarisky.pandalogin.telas.EsqueciSenha;
 import com.example.anggarisky.pandalogin.testes.TesteActivity;
+import com.example.anggarisky.pandalogin.tools.ToolsDroid;
+
+import junit.framework.Test;
 
 import java.util.List;
 
@@ -23,11 +26,8 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_cadastrar,tv_esqueciSenha;
     EditText et_nome,et_senha;
 
-
-
     Button bt_entrar;
     Intent intent;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,19 +64,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(v.getId()==R.id.BT_TL_Entrar){
+                    boolean user = true;
+                    if(verificaEts()) {
+                        List<Usuario> usuariosList = Usuario.listAll(Usuario.class);
 
-
-                    List<Usuario> usuariosList = Usuario.listAll(Usuario.class);
-
-                    for(Usuario u :usuariosList){ //Pegar validações da outra tela e usar aqui, setar os erros etc... aki
-                        if(et_nome.getText().toString().equals(u.getNome()) && et_senha.getText().toString().equals(u.getSenha())){
-                            intent = new Intent(MainActivity.this, AreaUsuario.class);
-                            startActivity(intent);
+                        for (Usuario u : usuariosList) { //Pegar validações da outra tela e usar aqui, setar os erros etc... aki
+                            if (et_nome.getText().toString().equals(u.getNome()) && et_senha.getText().toString().equals(u.getSenha())) {
+                                intent = new Intent(MainActivity.this, AreaUsuario.class);
+                                startActivity(intent);
+                                user = false;
+                            }
                         }
                     }
-
-
-
+                    if(user) {
+                        ToolsDroid.msg("Usuário e senha inválidos...", MainActivity.this);
+                    }
                 }
             }
         });
@@ -84,7 +86,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    public boolean verificaEts(){
+        if(et_nome.getText().toString().trim().equals("")){
+            et_nome.setText("");
+            et_nome.setError("Por favor informe o nome.");
+            return false;
+        }else if(et_senha.getText().toString().trim().equals("")){
+            et_senha.setText("");
+            et_senha.setError("Por favor informe a senha.");
+            return false;
+        }
+        return true;
+    }
 
     public void msg(String msg){
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
