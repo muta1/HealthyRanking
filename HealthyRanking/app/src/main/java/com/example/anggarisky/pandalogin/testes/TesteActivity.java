@@ -6,15 +6,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.anggarisky.pandalogin.R;
 import com.example.anggarisky.pandalogin.modelo.Usuario;
-import com.example.anggarisky.pandalogin.tools.ToolsDroid;
-import com.orm.SugarDb;
-import com.orm.SugarRecord;
+import com.example.anggarisky.pandalogin.tools.ToolsMsg;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TesteActivity extends AppCompatActivity {
@@ -34,7 +30,7 @@ public class TesteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teste);
 
-        ToolsDroid.msg("sei lá",this);
+        ToolsMsg.msg("sei lá",this);
 
         tv_mostrar=(TextView)findViewById(R.id.TV_TT_MostraTeste);
 
@@ -81,7 +77,7 @@ public class TesteActivity extends AppCompatActivity {
                 if(v.getId() == R.id.BT_TT_ApagarTudo){
                     boolean b = TesteActivity.this.deleteDatabase("healthyranking");
                     if(b){
-                        ToolsDroid.msg("Banco dropado com sucesso.",TesteActivity.this);
+                        ToolsMsg.msg("Banco dropado com sucesso.",TesteActivity.this);
                     }
                 }
             }

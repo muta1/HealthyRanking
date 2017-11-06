@@ -2,6 +2,7 @@ package com.example.anggarisky.pandalogin.modelo;
 
 import com.orm.SugarRecord;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public class Equipe extends SugarRecord<Equipe>{
     private long totalPontos;
     private long totalVitorias;
     private long totalDerrotas;
-    private List<String> integrantes;
+    private List<String> integrantes = new ArrayList<>();
 
     public Equipe() {
     }
@@ -104,7 +105,7 @@ public class Equipe extends SugarRecord<Equipe>{
     }
 
     public void setIntegrantes(List<String> integrantes) {
-        this.integrantes = integrantes;
+        this.integrantes.addAll(integrantes);
     }
 
     @Override

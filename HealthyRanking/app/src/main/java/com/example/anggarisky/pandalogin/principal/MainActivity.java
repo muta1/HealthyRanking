@@ -10,14 +10,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.anggarisky.pandalogin.R;
+import com.example.anggarisky.pandalogin.menu.MainNavigationMenu;
 import com.example.anggarisky.pandalogin.modelo.Usuario;
-import com.example.anggarisky.pandalogin.telas.AreaUsuario;
 import com.example.anggarisky.pandalogin.telas.CadastrarUsuario;
 import com.example.anggarisky.pandalogin.telas.EsqueciSenha;
-import com.example.anggarisky.pandalogin.testes.TesteActivity;
-import com.example.anggarisky.pandalogin.tools.ToolsDroid;
-
-import junit.framework.Test;
+import com.example.anggarisky.pandalogin.tools.ToolsMsg;
 
 import java.util.List;
 
@@ -34,15 +31,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_screen);
 
+        initApp();
+
+
+    }
+
+    public void initApp(){
         et_nome=(EditText)findViewById(R.id.ET_TL_Nome);
         et_senha=(EditText)findViewById(R.id.ET_TL_Senha);
 
-
+        et_nome.setText("");
+        et_senha.setText("");
 
         tv_cadastrar = (TextView) findViewById(R.id.TV_TL_Cadastro);
         tv_cadastrar.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                intent = new Intent(MainActivity.this, CadastrarUsuario.class); // modificar aqui para ter acesso ao teste do banco de dados e apagar banco etc...
+                intent = new Intent(MainActivity.this, CadastrarUsuario.class); // modificar aqui para ter acesso ao TesteActivity do banco de dados e apagar banco etc...
                 startActivity(intent);
             }
         });
@@ -70,21 +74,21 @@ public class MainActivity extends AppCompatActivity {
 
                         for (Usuario u : usuariosList) { //Pegar validações da outra tela e usar aqui, setar os erros etc... aki
                             if (et_nome.getText().toString().equals(u.getNome()) && et_senha.getText().toString().equals(u.getSenha())) {
-                                intent = new Intent(MainActivity.this, AreaUsuario.class);
+                                intent = new Intent(MainActivity.this, MainNavigationMenu.class);
+                                intent.putExtra("codigo",u.getId());
                                 startActivity(intent);
                                 user = false;
                             }
                         }
                     }
                     if(user) {
-                        ToolsDroid.msg("Usuário e senha inválidos...", MainActivity.this);
+                        ToolsMsg.msg("Usuário e senha inválidos...", MainActivity.this);
                     }
                 }
             }
         });
-
-
     }
+
 
     public boolean verificaEts(){
         if(et_nome.getText().toString().trim().equals("")){

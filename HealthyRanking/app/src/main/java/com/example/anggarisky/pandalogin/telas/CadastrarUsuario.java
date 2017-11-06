@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.example.anggarisky.pandalogin.R;
 import com.example.anggarisky.pandalogin.modelo.Usuario;
 import com.example.anggarisky.pandalogin.principal.MainActivity;
-import com.example.anggarisky.pandalogin.tools.ToolsDroid;
+import com.example.anggarisky.pandalogin.tools.ToolsMsg;
 
 import java.util.List;
 
@@ -61,7 +61,7 @@ public class CadastrarUsuario extends AppCompatActivity implements View.OnClickL
         boolean semDuplicado=true;
         for(Usuario u :usuarios){
             if(u.getNome().equals(et_nome.getText().toString())){
-                ToolsDroid.msg("Já existe um usuário cadastrado com este nome.",CadastrarUsuario.this);
+                ToolsMsg.msg("Já existe um usuário cadastrado com este nome.",CadastrarUsuario.this);
                 limpaEt();
                 semDuplicado=false;
                 break;
@@ -103,7 +103,7 @@ public class CadastrarUsuario extends AppCompatActivity implements View.OnClickL
 
         user.save();
 
-        ToolsDroid.msg("Cadastro realizado com sucesso.",CadastrarUsuario.this, Toast.LENGTH_LONG);
+        ToolsMsg.msg("Cadastro realizado com sucesso.",CadastrarUsuario.this, Toast.LENGTH_LONG);
 
         it = new Intent(CadastrarUsuario.this,MainActivity.class);
         startActivity(it);
@@ -133,7 +133,7 @@ public class CadastrarUsuario extends AppCompatActivity implements View.OnClickL
                         if(usuarioNaoExiste()){
                             insereNovoUsuario();
                         }else{
-                            ToolsDroid.msg("Já existe um usuário com este nome.",CadastrarUsuario.this);
+                            ToolsMsg.msg("Já existe um usuário com este nome.",CadastrarUsuario.this);
                         }
 
                     }

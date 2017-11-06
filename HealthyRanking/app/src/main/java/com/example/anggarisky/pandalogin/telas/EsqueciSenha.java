@@ -7,20 +7,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.anggarisky.pandalogin.R;
 import com.example.anggarisky.pandalogin.modelo.Usuario;
 import com.example.anggarisky.pandalogin.principal.MainActivity;
-import com.example.anggarisky.pandalogin.tools.ToolsDroid;
+import com.example.anggarisky.pandalogin.tools.ToolsMsg;
 
 import java.util.List;
 
 public class EsqueciSenha extends AppCompatActivity {
 
-    EditText et_nome,et_pergunta,et_resposta;
+    EditText et_nome,et_pergunta,et_resposta,et_novaSenha;
     TextView tv_msgSenha;
-    Button bt_buscar,bt_verificarResposta;
+    Button bt_buscar,bt_verificarResposta,bt_alterarSenha;
     Intent it;
     private final int limite = 3;
     private int tentativas = 0;
@@ -31,12 +30,20 @@ public class EsqueciSenha extends AppCompatActivity {
         setContentView(R.layout.esqueci_senha);
 
         resetTry();
+        initApp();
 
+    }
+
+
+    public void initApp(){
         tv_msgSenha=(TextView)findViewById(R.id.TV_ES_MensagemSenha);
 
         et_nome = (EditText)findViewById(R.id.ET_ES_Nome);
         et_pergunta=(EditText)findViewById(R.id.ET_ES_Pergunta);
         et_resposta=(EditText)findViewById(R.id.ET_ES_Resposta);
+
+        et_novaSenha=(EditText)findViewById(R.id.ET_ES_NovaSenha);
+        bt_alterarSenha=(Button)findViewById(R.id.BT_ES_NovaSenhaConfirma);
 
         bt_verificarResposta = (Button)findViewById(R.id.BT_ES_VerificarResposta);
 
@@ -49,13 +56,12 @@ public class EsqueciSenha extends AppCompatActivity {
                     if (v.getId() == R.id.BT_ES_Buscar) {
                         List<Usuario> usuariosList = Usuario.find(Usuario.class,"nome = ?",et_nome.getText().toString());
                         if(usuariosList.size() > 0){
-                            ToolsDroid.msg("Encontrou algum."+EsqueciSenha.class,EsqueciSenha.this);
                             tv_msgSenha.setVisibility(View.VISIBLE);
                             et_pergunta.setVisibility(View.VISIBLE);
                             et_resposta.setVisibility(View.VISIBLE);
                             bt_verificarResposta.setVisibility(View.VISIBLE);
 
-                            Usuario user = (Usuario)usuariosList.get(0);
+                            final Usuario user = (Usuario)usuariosList.get(0);
                             final String resp = user.getResposta();
 
                             if(user!= null){
@@ -71,15 +77,38 @@ public class EsqueciSenha extends AppCompatActivity {
                                                 if(resp.equals(et_resposta.getText().toString())){//se as respostas corresponderem, liberar campo alterar senha.
 
 
-                                                    ToolsDroid.msg("Funcionou ",EsqueciSenha.this);
+                                                    et_novaSenha.setVisibility(View.VISIBLE);
+                                                    bt_alterarSenha.setVisibility(View.VISIBLE);
 
+                                                    bt_alterarSenha.setOnClickListener(new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View v) {
+
+                                                            if(v.getId() == R.id.BT_ES_NovaSenhaConfirma) {
+                                                                if(!et_novaSenha.getText().toString().equals("")){
+                                                                    user.setSenha(et_novaSenha.getText().toString());
+                                                                    user.save();
+
+                                                                    et_novaSenha.setError("Senha alterada com sucesso.");
+
+                                                                    it = new Intent(EsqueciSenha.this,MainActivity.class);
+                                                                    startActivity(it);
+
+                                                                }else{
+                                                                    et_novaSenha.setError("O campo Nova Senha está vazio.");
+                                                                }
+                                                            }
+                                                        }
+                                                    });
+
+                                                    ToolsMsg.msg("Altere sua senha... ",EsqueciSenha.this);
 
                                                 }else{
                                                     if(tentativas < limite){ // com um limite de 3 tentativas, ou redireciona para tela principal
                                                         increaseTry();
-                                                        //ToolsDroid.msg("Aumentando tentativas = "+ tentativas,EsqueciSenha.this);
+                                                        //ToolsMsg.msg("Aumentando tentativas = "+ tentativas,EsqueciSenha.this);
                                                     }else{
-                                                        ToolsDroid.msg("Número limite de tentativas atingido...",EsqueciSenha.this);
+                                                        ToolsMsg.msg("Número limite de tentativas atingido...",EsqueciSenha.this);
                                                         it = new Intent(EsqueciSenha.this, MainActivity.class);
                                                         startActivity(it);
                                                     }
@@ -93,7 +122,7 @@ public class EsqueciSenha extends AppCompatActivity {
                             }
 
                         }else{
-                            ToolsDroid.msg("Usuário não encontrado.",EsqueciSenha.this);
+                            ToolsMsg.msg("Usuário não encontrado.",EsqueciSenha.this);
                             tv_msgSenha.setVisibility(View.INVISIBLE);
                             et_pergunta.setVisibility(View.INVISIBLE);
                             et_resposta.setVisibility(View.INVISIBLE);
