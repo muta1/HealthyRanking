@@ -42,7 +42,7 @@ public class CadastrarEquipe extends Fragment implements View.OnClickListener {/
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.cadastrar_equipe, null);//atenção aki
+        return inflater.inflate(R.layout.tela_cadastrar_equipe, null);//atenção aki
     }
 
     @Override
