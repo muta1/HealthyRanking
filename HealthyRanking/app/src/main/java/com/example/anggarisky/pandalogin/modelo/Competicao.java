@@ -10,16 +10,18 @@ public class Competicao extends SugarRecord<Competicao> {
     private String nomeCompeticao;
     private String data_ini;
     private String data_fim;
-    private Equipe equipe;
+    private Equipe equipe1;
+    private Equipe equipe2;
 
     public Competicao() {
     }
 
-    public Competicao(String nomeCompeticao, String data_ini, String data_fim, Equipe equipe) {
+    public Competicao(String nomeCompeticao, String data_ini, String data_fim, Equipe equipe1, Equipe equipe2) {
         this.nomeCompeticao = nomeCompeticao;
         this.data_ini = data_ini;
         this.data_fim = data_fim;
-        this.equipe = equipe;
+        this.equipe1 = equipe1;
+        this.equipe2 = equipe2;
     }
 
     public String getNomeCompeticao() {
@@ -46,12 +48,20 @@ public class Competicao extends SugarRecord<Competicao> {
         this.data_fim = data_fim;
     }
 
-    public Equipe getEquipe() {
-        return equipe;
+    public Equipe getEquipe1() {
+        return equipe1;
     }
 
-    public void setEquipe(Equipe equipe) {
-        this.equipe = equipe;
+    public void setEquipe1(Equipe equipe1) {
+        this.equipe1 = equipe1;
+    }
+
+    public Equipe getEquipe2() {
+        return equipe2;
+    }
+
+    public void setEquipe2(Equipe equipe2) {
+        this.equipe2 = equipe2;
     }
 
     @Override
@@ -60,7 +70,8 @@ public class Competicao extends SugarRecord<Competicao> {
                 "nomeCompeticao='" + nomeCompeticao + '\'' +
                 ", data_ini='" + data_ini + '\'' +
                 ", data_fim='" + data_fim + '\'' +
-                ", equipe=" + equipe +
+                ", equipe1=" + equipe1 +
+                ", equipe2=" + equipe2 +
                 '}';
     }
 }

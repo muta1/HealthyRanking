@@ -6,16 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/IV_Item_Equipes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="2dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher_round" />
-
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
@@ -30,7 +20,7 @@
         android:textSize="12sp"
         android:textStyle="bold"
         android:typeface="monospace"
-        app:layout_constraintStart_toEndOf="@+id/IV_Item_Equipes"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -51,8 +41,8 @@
     <Button
         android:id="@+id/BT_ListItem_Delete"
         style="@android:style/Widget.Material.Light.Button.Inset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="75dp"
+        android:layout_height="40dp"
         android:layout_marginEnd="2dp"
         android:layout_marginTop="2dp"
         android:backgroundTint="@android:color/holo_red_light"
@@ -65,8 +55,8 @@
     <Button
         android:id="@+id/BT_ListItem_Editar"
         style="@android:style/Widget.Material.Light.Button.Inset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="75dp"
+        android:layout_height="40dp"
         android:layout_marginEnd="2dp"
         android:layout_marginTop="2dp"
         android:backgroundTint="@android:color/holo_blue_dark"
@@ -74,6 +64,25 @@
         android:textColor="@android:color/background_light"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/BT_ListItem_Delete"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/TV_Item_Static"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
+        android:text="Integrantes:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/TV_Item_Content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toEndOf="@+id/TV_Item_Static"
         app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

@@ -39,19 +39,13 @@ public class TelaEquipes extends Fragment implements View.OnClickListener{
 
 
 
-
-
-
-
-
-
         // todas ações que devem iniciar com a tela, ex: ligar botões...
 
         bt_editarEquipes=(Button)getActivity().findViewById(R.id.BT_EP_EditarEquipes);
         bt_editarEquipes.setOnClickListener(this);
 
-        bt_visualizarEquipes=(Button)getActivity().findViewById(R.id.BT_EP_VisualizarEquipes);
-        bt_visualizarEquipes.setOnClickListener(this);
+//        bt_visualizarEquipes=(Button)getActivity().findViewById(R.id.BT_EP_VisualizarEquipes);
+//        bt_visualizarEquipes.setOnClickListener(this);
 
         bt_novaEquipe=(Button)getActivity().findViewById(R.id.BT_EP_NovaEquipe);
         bt_novaEquipe.setOnClickListener(this);
@@ -75,16 +69,16 @@ public class TelaEquipes extends Fragment implements View.OnClickListener{
                 drawer.closeDrawer(GravityCompat.START);
             break;
 
-            case R.id.BT_EP_VisualizarEquipes:
-                fragment = new VisualizarEquipes();
-                fragmentManager = getActivity().getSupportFragmentManager();
-                ft = fragmentManager.beginTransaction();
-                ft.replace(R.id.screen_area,fragment);
-                ft.commit();
-
-
-                drawer.closeDrawer(GravityCompat.START);
-                break;
+//            case R.id.BT_EP_VisualizarEquipes:
+//                fragment = new VisualizarEquipes();
+//                fragmentManager = getActivity().getSupportFragmentManager();
+//                ft = fragmentManager.beginTransaction();
+//                ft.replace(R.id.screen_area,fragment);
+//                ft.commit();
+//
+//
+//                drawer.closeDrawer(GravityCompat.START);
+//                break;
             case R.id.BT_EP_EditarEquipes:
 
                 fragment = new TelaEditarEquipes();

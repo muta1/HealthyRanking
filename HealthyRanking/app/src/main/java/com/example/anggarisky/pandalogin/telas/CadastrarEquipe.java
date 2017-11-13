@@ -126,7 +126,17 @@ public class CadastrarEquipe extends Fragment implements View.OnClickListener {/
                     equipe = new Equipe();
 
                     equipe.setNome(et_equipeNome.getText().toString());
-                    equipe.setIntegrantes(this.integrantesStringList);
+                    //equipe.setIntegrantes(this.integrantesStringList);
+
+                    String integrantes="";
+
+
+                    for(String str :integrantesStringList){
+                        integrantes += ","+str;
+                    }
+                    integrantes = integrantes.replaceFirst(",","");
+                    equipe.setIntegrantesString(integrantes);
+
 
                     equipe.save();
 

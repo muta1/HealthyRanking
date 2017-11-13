@@ -21,6 +21,7 @@ import com.example.anggarisky.pandalogin.modelo.Usuario;
 import com.example.anggarisky.pandalogin.principal.MainActivity;
 import com.example.anggarisky.pandalogin.telas.AreaUsuario;
 import com.example.anggarisky.pandalogin.telas.CadastrarEquipe;
+import com.example.anggarisky.pandalogin.telas.TelaCompeticoes;
 import com.example.anggarisky.pandalogin.telas.TelaEquipes;
 
 public class MainNavigationMenu extends AppCompatActivity
@@ -126,7 +127,7 @@ public class MainNavigationMenu extends AppCompatActivity
         } else if (id == R.id.nav_equipes) {
             fragment = new TelaEquipes();
         } else if (id == R.id.nav_competicoes) {
-
+            fragment = new TelaCompeticoes();
         }else if (id == R.id.nav_ranking){
 
         }
