@@ -19,7 +19,7 @@ public class Equipe extends SugarRecord<Equipe>{
     private long totalPontos;
     private long totalVitorias;
     private long totalDerrotas;
-    private List<String> integrantes = new ArrayList<String>();
+    //private List<String> integrantes = new ArrayList<String>();
     private String integrantesString;
 
     public Equipe() {
@@ -109,26 +109,16 @@ public class Equipe extends SugarRecord<Equipe>{
         this.totalDerrotas = totalDerrotas;
     }
 
-    public List<String> getIntegrantes() {
-        return integrantes;
-    }
-
-    public void setIntegrantes(List<String> integrantes) {
-        this.integrantes.addAll(integrantes);
-    }
+//    public List<String> getIntegrantes() {
+//        return integrantes;
+//    }
+//
+//    public void setIntegrantes(List<String> integrantes) {
+//        this.integrantes.addAll(integrantes);
+//    }
 
     @Override
     public String toString() {
-        return "Equipe{" +
-                "nome='" + nome + '\'' +
-                ", melhorResultado='" + melhorResultado + '\'' +
-                ", piorResultado='" + piorResultado + '\'' +
-                ", dataUltimoJogo='" + dataUltimoJogo + '\'' +
-                ", dataProximoJogo='" + dataProximoJogo + '\'' +
-                ", totalPontos=" + totalPontos +
-                ", totalVitorias=" + totalVitorias +
-                ", totalDerrotas=" + totalDerrotas +
-                ", integrantes=" + integrantesString +
-                '}';
+        return nome;
     }
 }

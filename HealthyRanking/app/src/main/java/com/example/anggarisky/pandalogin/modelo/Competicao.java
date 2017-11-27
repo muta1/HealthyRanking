@@ -10,11 +10,13 @@ public class Competicao extends SugarRecord<Competicao> {
     private String nomeCompeticao;
     private String data_ini;
     private String data_fim;
-    private Equipe equipe1;
-    private Equipe equipe2;
+    private Equipe equipe1 = new Equipe();
+    private Equipe equipe2 = new Equipe();
 
     public Competicao() {
     }
+
+
 
     public Competicao(String nomeCompeticao, String data_ini, String data_fim, Equipe equipe1, Equipe equipe2) {
         this.nomeCompeticao = nomeCompeticao;
